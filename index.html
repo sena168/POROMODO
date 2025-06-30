@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#e74c3c">
+    <title>POROMODO - Pomodoro Timer</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Simple offline Pomodoro timer for productivity">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="POROMODO">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" sizes="192x192" href="icons/icon-192x192.svg">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.svg">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>🍅 POROMODO</h1>
+            <p class="subtitle">Focus. Work. Rest. Repeat.</p>
+        </header>
+
+        <main>
+            <!-- Timer Display -->
+            <div class="timer-container">
+                <div class="timer-circle">
+                    <svg class="progress-ring" width="250" height="250">
+                        <circle class="progress-ring-background" 
+                                cx="125" cy="125" r="110" 
+                                fill="transparent" 
+                                stroke="#ecf0f1" 
+                                stroke-width="8"/>
+                        <circle class="progress-ring-progress" 
+                                cx="125" cy="125" r="110" 
+                                fill="transparent" 
+                                stroke="#e74c3c" 
+                                stroke-width="8"
+                                stroke-linecap="round"/>
+                    </svg>
+                    <div class="timer-display">
+                        <div class="time" id="timeDisplay">25:00</div>
+                        <div class="session-type" id="sessionType">Focus Time</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button id="startBtn" class="btn btn-primary">
+                    <span class="btn-icon">▶️</span>
+                    Start
+                </button>
+                <button id="pauseBtn" class="btn btn-secondary" disabled>
+                    <span class="btn-icon">⏸️</span>
+                    Pause
+                </button>
+                <button id="resetBtn" class="btn btn-tertiary">
+                    <span class="btn-icon">🔄</span>
+                    Reset
+                </button>
+            </div>
+
+            <!-- Session Info -->
+            <div class="session-info">
+                <div class="session-count">
+                    <span class="label">Sessions Today:</span>
+                    <span id="sessionCount">0</span>
+                </div>
+                <div class="current-session">
+                    <span class="label">Current:</span>
+                    <span id="currentSession">Session 1</span>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="settings">
+                <details>
+                    <summary>⚙️ Settings</summary>
+                    <div class="settings-content">
+                        <div class="setting-group">
+                            <label for="focusTime">Focus Time (minutes):</label>
+                            <input type="number" id="focusTime" min="1" max="60" value="25">
+                        </div>
+                        <div class="setting-group">
+                            <label for="shortBreak">Short Break (minutes):</label>
+                            <input type="number" id="shortBreak" min="1" max="30" value="5">
+                        </div>
+                        <div class="setting-group">
+                            <label for="longBreak">Long Break (minutes):</label>
+                            <input type="number" id="longBreak" min="1" max="60" value="15">
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="soundEnabled" checked>
+                                Enable notification sounds
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="notificationsEnabled" checked>
+                                Enable browser notifications
+                            </label>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for productivity • Works offline</p>
+        </footer>
+    </div>
+
+    <!-- Install PWA Prompt -->
+    <div id="installPrompt" class="install-prompt hidden">
+        <div class="install-content">
+            <h3>📱 Install POROMODO</h3>
+            <p>Install this app for the best experience!</p>
+            <div class="install-buttons">
+                <button id="installBtn" class="btn btn-primary">Install</button>
+                <button id="dismissBtn" class="btn btn-secondary">Not now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
